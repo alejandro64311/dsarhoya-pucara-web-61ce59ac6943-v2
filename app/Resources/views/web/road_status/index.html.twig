@@ -1,0 +1,39 @@
+{% extends 'web/base.html.twig' %}
+
+{% block roadStatusMenuClass %}active{% endblock %}
+{% block pageTitle %}Estado de caminos {% endblock %}
+{% block topMenu %}{% endblock %}
+
+{% block body %}
+<div class="row">
+    {% for road in roads %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card road-status mb-4">
+                <div class="card-header">
+                    <small>TRAMO</small>
+                    <div>{{road.name}}</div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h5>Tránsito</h5>
+                        <p>{{road.transit}}</p>
+                    </div>
+                    <div class="mb-3">
+                        <h5>Riesgo de Avalanchas</h5>
+                        <p><strong>Indice:</strong> {{road.index}}</p>
+                        <p><strong>Riesgo:</strong> {{road.risk}}</p>
+                        <p><strong>Condición:</strong> {{road.condition}}</p>
+                        <p><strong>Alertas:</strong> {{road.alert}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% if roads|length == 0 %}
+        <div class="col">
+            <p class="alert alert-info"> No se encontró información de los caminos</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

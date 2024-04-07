@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}dsarhoya SpA{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{asset('bundles/dsarhoyabase/css/bootstrap.min.css')}}" rel="stylesheet">
+            <link href="{{asset('bundles/dsarhoyabase/css/font-awesome.min.css')}}" rel="stylesheet">
+            <link href="{{asset('bundles/dsarhoyabase/css/login.css')}}" rel="stylesheet">
+            {#{% stylesheets 
+                '@dsarhoyaBaseBundle/Resources/public/css/login.css'
+                output='compiled/login.css'
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}#}
+        {% endblock %}
+        <link rel="icon" type="image/png" href="{{asset('bundles/dsarhoyabase/img/favicon_dsy.png')}}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            {% block body %}{% endblock %}
+            <br />
+            <br />
+            <br />
+            <div class="row fixed bottom right hidden-xs">
+                {# <div class="col-md-6"></div> #}
+                <div class="col-md-2">
+                    <a href="http://www.dsarhoya.cl" target="_blank">
+                        <img src="{{ asset('assets/img/logo-pucara.png') }}">
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="http://www.dsarhoya.cl" target="_blank" >
+                        <img src="{{asset('bundles/dsarhoyabase/img/dsarhoya1.png')}}" style="height: 100px">
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+        {% block javascripts %}
+            <script src="{{ asset('bundles/dsarhoyabase/js/jquery-1.10.2.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('bundles/dsarhoyabase/js/bootstrap.min.js') }}" type="text/javascript"></script>
+        {% endblock %}
+    </body>
+</html>

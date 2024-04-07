@@ -1,0 +1,97 @@
+{% if hourForecasts is not empty %}
+    <div class="row mt-3 mt-lg-4">
+        <div class="col-12 col-small-padding">
+            <div class="card">
+                <div class="card-header">
+                    Pronóstico horario {{ hourForecasts[0].dayFormatted }}
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-borderless detail-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    {% for forecast in hourForecasts %}
+                                        <th scope="col">{{forecast.hourFormatted}}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Cobertura Nubosa</th>
+                                    {% for forecast in hourForecasts %}
+                                        <td>
+                                            <div class="forecast-icon mx-auto">
+                                                <img src="{{ forecast.cloudCoverIcon|icon_url }}" alt="Carrizalillo">
+                                            </div>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <p>Dirección del viento °</p>
+                                        <p>Intensidad del viento °</p>
+                                        <p>Rachas de viento m/s</p>
+                                    </th>
+                                    {% for forecast in hourForecasts %}                        
+                                        <td>
+                                            <p>{{ forecast.windDirection }}</p>
+                                            <p>{{ forecast.windIntensity }}</p>
+                                            <p>{{ forecast.windGusts }}</p>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <p>Temperatura °C</p>
+                                        <p>Sensación térmica °C</p>
+                                    </th>
+                                    {% for forecast in hourForecasts %}                        
+                                        <td>
+                                            <p>{{ forecast.temperature }}</p>
+                                            <p>{{ forecast.thermalSensation|round(1) }}</p>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    <th scope="row">Humedad relativa %</th>
+                                    {% for forecast in hourForecasts %}                        
+                                        <td>
+                                            <p>{{ forecast.relativeHumidity }}</p>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <p>Prob. de precipitación %</p>
+                                        <p>Acumulación estimada cm/mm</p>
+                                    </th>
+                                    {% for forecast in hourForecasts %}                        
+                                        <td>
+                                            <p>{{ forecast.precipitationProbability }}</p>
+                                            <p>{{ forecast.estimatedAccumulation }}</p>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    <th scope="row">Prob. actividad eléctrica %</th>
+                                    {% for forecast in hourForecasts %}                        
+                                        <td>
+                                            <p>{{ forecast.electricalActivityProbability }}</p>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="row">
+        <div class="col col-md-12 mt-3">
+            <p class="alert alert-info"> Sin pronósticos por hora</p>
+        </div>
+    </div>
+{% endif %}

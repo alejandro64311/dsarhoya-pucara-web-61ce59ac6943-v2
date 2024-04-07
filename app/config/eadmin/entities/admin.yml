@@ -1,0 +1,36 @@
+# The configuration options are explained in detail in the bundle documentation,
+# which is published at https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    entities:
+        Admin:
+            class: AppBundle\Entity\User
+            # label: entity.label.admin
+            controller: AppBundle\Controller\Admin\UserController
+            disabled_actions: [ show ]
+            list:
+                templates:
+                  list: '@dsarhoyaDSYEasyAdmin/Default/list.html.twig'
+                title: menu.admins
+                dql_filter: "entity.role = 'ROLE_ADMIN' AND entity.deletedAt IS NULL"
+                sort: [ name, ASC ]
+                actions: #[ new, edit, delete ]
+                    - { name: 'new', icon: 'plus-circle', label: 'button.new %%entity_label%%' }
+                    - { name: 'edit', icon: 'edit', css_class: 'btn btn-warning', label: button.edit }
+                    - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: button.delete }
+                fields:
+                    - { property: name, label: entity.property.name }
+                    # - { property: rut, label: entity.property.rut }
+                    - { property: email, label: entity.property.email }
+                    - { property: state, label: entity.property.active, type: boolean }
+                    - { property: accountValidated, label: entity.property.accountValidated, type: 'boolean', template: '@dsarhoyaDSYEasyAdmin/Fields/accountValidated.html.twig' }
+                    - { property: createdAt, label: entity.property.created_at }
+            search:
+                fields: [ name, email, createdAt ]
+                sort: [ createdAt, ASC]
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-6', label: 'app.basic', icon: 'pencil' }
+                    - { property: name, label: entity.property.name }
+                    # - { property: rut, label: entity.property.rut }
+                    - { property: email, label: entity.property.email, type: email }
+                    - { property: state, label: entity.property.state, type: choice, type_options: { choices: { option.active: 1, option.inactive: 0 } } }

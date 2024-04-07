@@ -1,0 +1,41 @@
+# # The configuration options are explained in detail in the bundle documentation,
+# # which is published at https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    entities:
+        WeatherTrend:
+            class: AppBundle\Entity\WeatherTrend
+            controller: AppBundle\Controller\Admin\WeatherTrendController
+            list:
+                title: menu.weather_trend
+                sort: [name, 'ASC']
+                actions:
+                    - { name: 'new', icon: 'plus-circle', label: 'button.new %%entity_label%%' }
+                    - { name: 'edit', icon: 'edit', css_class: 'btn btn-warning', label: button.edit }
+                    - { name: 'show', icon: 'eye', css_class: 'btn btn-info', label: button.show }
+                    - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: button.delete }
+                fields:
+                    - { property: 'name', label: 'entity.property.name' }
+                    - { property: typeName, label: 'entity.property.type' }
+                    - { property: 'fileKey', label: 'entity.property.fileKey', type: url }
+                    - { property: 'createdAt', label: 'entity.property.created_at' }
+            search:
+                fields: [name]
+                sort: [name, 'DESC']
+            show:
+                fields:
+                    - { property: name, label: 'entity.property.name' }
+                    - { property: typeName, label: 'entity.property.type' }
+                    - { property: fileKey, label: 'entity.property.fileKey', type: url }
+                    - { property: createdAt, label: 'entity.property.createdAt' }
+                    - { property: updatedAt, label: 'entity.property.updatedAt' }
+                    - { property: createdBy, label: 'entity.property.createdBy' }
+                    - { property: updatedBy, label: 'entity.property.updatedBy' }
+                    
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-6', label: 'app.basic', icon: 'pencil' }
+                    - { property: name, label: 'entity.property.name' }
+                    - { property: type, label: 'entity.property.type', type: 'AppBundle\Form\Admin\WeatherTrendTypeType' }
+                    - { property: fileKey, label: 'entity.property.fileKey' }
+
+

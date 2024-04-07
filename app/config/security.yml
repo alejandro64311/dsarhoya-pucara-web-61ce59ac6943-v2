@@ -1,0 +1,66 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: 
+          algorithm: sha1
+          iterations: 1
+          encode_as_base64: false
+        AppBundle\Entity\User: sha512
+    role_hierarchy:
+        ROLE_ADMIN:       []
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        chain_provider:
+          chain:
+            providers: [in_memory, user_db]
+        in_memory:
+          memory:
+            users:
+                dsy: { password: "%superAdminPassDsy%", roles: [ 'ROLE_SUPER_ADMIN' ] }
+                doc: { password: 041150fd24e5d7f2e5a0899d64221fa30e808854, roles: [ 'ROLE_DOCS' ] }
+                pucara: { password: 06788c4b389e55ccd876d53d3e8da99393b3e5e2, roles: [ 'ROLE_WEB' ] }
+        user_db:
+          entity: { class: AppBundle\Entity\User }
+        api_key_user_provider:
+          id: dsy.apikeyuserprovider
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        secured_aeronautical:
+            pattern: ^/secured/aeronautical-forecast
+            provider: in_memory
+            http_basic:
+                realm: 'Secured Area'
+                provider: in_memory
+
+        secured_area:
+            switch_user: true
+            pattern:    ^/secured
+            provider:    chain_provider
+            form_login:
+                check_path: /secured/login_check
+                login_path: /login
+                default_target_path: /secured/index
+            logout:
+                path:   /secured/logout
+                target: /login
+
+        public_api:
+            methods: [get]
+            pattern: ^(/api/1)
+            security: false
+
+        # api_firewall:
+        #     pattern: ^/api
+        #     stateless: true
+        #     simple_preauth:
+        #         authenticator: dsy.apikeyauthenticator
+        #     provider: api_key_user_provider
+
+    access_control:
+        - { path: ^/secured/admin, roles: [ROLE_ADMIN] }

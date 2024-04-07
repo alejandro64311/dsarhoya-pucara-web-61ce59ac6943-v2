@@ -1,0 +1,38 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: symfony
+    database_user: root
+    database_password: ~
+    # You should uncomment this if you want to use pdo_sqlite
+    #database_path: '%kernel.project_dir%/var/data/data.sqlite'
+
+    mailer_user: ~
+
+    # A secret key that's used to generate certain security-related tokens
+    secret: ThisTokenIsNotSoSecretChangeIt
+
+    # Dsarhoya BaseBundle
+    COMPANY_NAME: 'Pucará'
+    SERVICE_NAME: 'App de clima'
+    superAdminPassDsy: ~
+
+    # AWS SES
+    ses_key: ~
+    ses_secret: ~
+    ses_region: ~
+    from_email: contacto@dsarhoya.cl
+
+    # AWS S3
+    s3_key: ~
+    s3_secret: ~
+    s3_bucket: ~
+    s3_region: ~
+
+    # Weather API
+    weather_api_key: ~
+
+    stage_mine: ~

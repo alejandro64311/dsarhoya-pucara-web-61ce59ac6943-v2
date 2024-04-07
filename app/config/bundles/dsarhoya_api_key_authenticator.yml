@@ -1,0 +1,12 @@
+dsarhoya_dsy_api_key_authenticator:
+#   softDeleteable: false
+  default_provider_user_class: AppBundle\Entity\User
+  error_codes:
+    AppBundle\Error\Error400: {code: 1000}
+    AppBundle\Error\InvalidFormError: {code: 1001}
+    AppBundle\Error\ParameterNotFound: {code: 1002}
+    AppBundle\Error\EntityNotFound: {code: 1003}
+    AppBundle\Error\PersistEntityError: {code: 1004}
+    AppBundle\Error\RemoveEntityError: {code: 1005}
+    AppBundle\Error\InvalidDateTime: {code: 1006}
+    AppBundle\Error\DispatchGuideNotFoundError: {code: 1007}

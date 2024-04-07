@@ -1,0 +1,9 @@
+# MonologBundle Configurations
+monolog:
+    channels: ["api_exceptions"]
+    handlers:
+        api_exceptions:
+            type: stream
+            path: "%kernel.logs_dir%/api_exceptions.log"
+            level: info
+            channels: api_exceptions

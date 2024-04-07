@@ -1,0 +1,76 @@
+# # The configuration options are explained in detail in the bundle documentation,
+# # which is published at https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    entities:
+        MaritimeForecast:
+            class: AppBundle\Entity\MaritimeForecast
+            # label: entity.label.plant
+            controller: AppBundle\Controller\Admin\MaritimeForecastController
+            disabled_actions: [new, edit]
+            # templates:
+            #   list: '@dsarhoyaDSYEasyAdmin/Default/list.html.twig'
+            list:
+                title: menu.maritime_forecast
+                # dql_filter: "entity.role = 'ROLE_ADMIN' AND entity.deletedAt IS NULL"
+                sort: [dateObject, 'DESC']
+                actions:
+                    # - { name: 'new', icon: 'plus-circle', label: 'button.new %%entity_label%%' }
+                    # - { name: 'edit', icon: 'edit', css_class: 'btn btn-warning', label: button.edit }
+                    - { name: 'show', icon: 'eye', css_class: 'btn btn-info', label: button.show }
+                    - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: button.delete }
+                fields:
+                    - { property: 'dateObject', label: 'entity.property.date' }
+                    - { property: 'code', label: 'entity.property.code' }
+                    - { property: 'emissionDate', label: 'entity.property.emissionDate' }
+                    - { property: 'validityDate', label: 'entity.property.validityDate' }
+                    - { property: 'createdAt', label: 'entity.property.created_at' }
+            search:
+                fields: [code, dateObject, emissionDate]
+                sort: [dateObject, 'DESC']
+            show:
+                fields:
+                    - { property: dateObject, label: 'entity.property.date' }
+                    - { property: code, label: 'entity.property.code' }
+                    - { property: emissionDate, label: entity.property.emissionDate }
+                    - { property: validityDate, label: entity.property.validityDate }
+                    - { property: synopticSituation, label: entity.property.synopticSituation }
+                    - { property: maximumTemperature, label: entity.property.maximumTemperature }
+                    - { property: minimumTemperature, label: entity.property.minimumTemperature }
+                    - { property: forecast, label: entity.property.forecast }
+                    - { property: seaState, label: entity.property.seaState }
+                    - { property: windIntensity, label: entity.property.windIntensity }
+                    - { property: windDirectionAM, label: entity.property.windDirectionAM }
+                    - { property: windDirectionPM, label: entity.property.windDirectionPM }
+                    - { property: windDirectionObservation, label: entity.property.windDirectionObservation }
+                    - { property: heightWavesGeneral, label: entity.property.heightWavesGeneral }
+                    - { property: heightWavesAM, label: entity.property.heightWavesAM }
+                    - { property: heightWavesPM, label: entity.property.heightWavesPM }
+                    - { property: speedWavesAM, label: entity.property.speedWavesAM }
+                    - { property: speedWavesPM, label: entity.property.speedWavesPM }
+                    - { property: createdAt, label: entity.property.createdAt }
+                    - { property: updatedAt, label: entity.property.updatedAt }
+                    - { property: createdBy, label: entity.property.createdBy }
+                    - { property: updatedBy, label: entity.property.updatedBy }
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-6', label: 'app.basic', icon: 'pencil' }
+                    - { property: dateObject, label: 'entity.property.date' }
+                    - { property: code, label: 'entity.property.code' }
+                    - { property: emissionDate, label: entity.property.emissionDate }
+                    - { property: validityDate, label: entity.property.validityDate }
+                    - { property: synopticSituation, label: entity.property.synopticSituation }
+                    - { property: maximumTemperature, label: entity.property.maximumTemperature }
+                    - { property: minimumTemperature, label: entity.property.minimumTemperature }
+                    - { property: forecast, label: entity.property.forecast }
+                    - { property: seaState, label: entity.property.seaState }
+                    - { property: windIntensity, label: entity.property.windIntensity }
+                    - { property: windDirectionAM, label: entity.property.windDirectionAM }
+                    - { property: windDirectionPM, label: entity.property.windDirectionPM }
+                    - { property: windDirectionObservation, label: entity.property.windDirectionObservation }
+                    - { property: heightWavesGeneral, label: entity.property.heightWavesGeneral }
+                    - { property: heightWavesAM, label: entity.property.heightWavesAM }
+                    - { property: heightWavesPM, label: entity.property.heightWavesPM }
+                    - { property: speedWavesAM, label: entity.property.speedWavesAM }
+                    - { property: speedWavesPM, label: entity.property.speedWavesPM }
+
+

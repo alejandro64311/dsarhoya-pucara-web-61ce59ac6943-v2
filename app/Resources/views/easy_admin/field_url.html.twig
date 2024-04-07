@@ -1,0 +1,6 @@
+{% set isIFileEnabledEntity = item is instanceof('dsarhoya\\DSYFilesBundle\\Interfaces\\IFileEnabledEntity') %}
+{% if view == 'show' %}
+    <a target="_blank" href="{{ isIFileEnabledEntity ? fileUrl(value) : value }}">{{ isIFileEnabledEntity ? filename(value) : value }}</a>
+{% else %}
+    <a target="_blank" href="{{ item is instanceof('dsarhoya\\DSYFilesBundle\\Interfaces\\IFileEnabledEntity') ? fileUrl(value) : value }}">{{ (isIFileEnabledEntity ? filename(value) : value)|replace({ 'https://': '', 'http://': '' })|easyadmin_truncate }}</a>
+{% endif %}

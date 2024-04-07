@@ -1,0 +1,27 @@
+services:
+    gedmo.listener.timestampable:
+        class: Gedmo\Timestampable\TimestampableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+    # gedmo.listener.sortable:
+    #     class: Gedmo\Sortable\SortableListener
+    #     tags:
+    #         - { name: doctrine.event_subscriber, connection: default }
+    #     calls:
+    #         - [ setAnnotationReader, [ "@annotation_reader" ] ]
+    gedmo.listener.blameable:
+        class: Gedmo\Blameable\BlameableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default, priority: -255 }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+    Gedmo\Blameable\BlameableListener: "@gedmo.listener.blameable"
+    dsy.listener.blameable:
+        class: AppBundle\EventListener\BlameListener
+        arguments: ["@gedmo.listener.blameable", "@security.token_storage"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController, priority: -254 }
+    AppBundle\EventListener\BlameListener: "@dsy.listener.blameable"
+    

@@ -1,0 +1,22 @@
+#flash-messages {
+    padding: 5px;
+}
+.select2-container--bootstrap .select2-selection__clear {
+    margin-right: 5px;
+}
+
+.pelambres .main-header > .navbar{
+    background-color: #00768e;
+}
+
+.collahuasi .main-header > .navbar{
+    background-color: #174C39;
+}
+
+.teniente .main-header > .navbar{
+    background-color: #2b4552;
+}
+
+.caserones .main-header > .navbar{
+    background-color: #098E91;
+}

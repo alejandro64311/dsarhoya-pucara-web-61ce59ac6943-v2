@@ -1,0 +1,21 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{% block body_class %}
+    {{ mine_slug(app.request) }}
+{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            {% for name in iconNames %}
+                <div class="col-md-2 col-sm-3 col-xs-4">
+                    <img src="{{ name|icon_url }}" height="150px" width="auto" alt="icon">
+                    <br />
+                    {{name}}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

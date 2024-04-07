@@ -1,0 +1,136 @@
+{% extends 'web/base.html.twig' %}
+
+{% block bodyClass %}meteorological-forecast{% endblock %}
+
+{% block meteorologicalForecastMenuClass %}active{% endblock %}
+
+{% block pageTitle %}
+    Pronóstico Diario
+{% endblock %}
+
+{% block topMenu %}
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <small>Localidades</small> <i class="flaticon-menu-1"></i>
+    </button>
+    <nav class="navbar navbar-expand-lg navbar-light" id="localidades">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                {% for s in slugs %}
+                <li class="nav-item {{ s == slug ? 'active' : '' }}">
+                    <a class="nav-link"
+                        href="{{ path('web_meteorological_forecast_place', {slug: s}) }}">{{ places[s].name is defined ? places[s].name : s|capitalize}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block body %}
+<div class="row mt-2 mt-lg-3">
+    <div class="col-12 col-lg-7 col-small-padding">
+        <div class="card forecast">
+            <div class="card-header p-0">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    {% for forecast in firstForecasts %}
+                        <li class="nav-item">
+                            <a 
+                            class="nav-link {{ date('now')|date('d') == forecast.dateObject|date('d') and date('now')|date('m') == forecast.dateObject|date('m') ? 'active' : ''}}" 
+                            id="day{{forecast.dateObject|date('d')}}{{forecast.dateObject|date('m')}}-tab" 
+                            data-toggle="tab" 
+                            href="#day{{forecast.dateObject|date('d')}}{{forecast.dateObject|date('m')}}" 
+                            role="tab" 
+                            aria-controls="day{{forecast.dateObject|date('d')}}{{forecast.dateObject|date('m')}}" 
+                            aria-selected="true">
+                                {{ forecast.dateObject|date('d') }} {{ forecast.dateObject|date('F')|trans }}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a 
+                            class="nav-link active" 
+                            id="no-forecast-tab" 
+                            data-toggle="tab" 
+                            href="#" 
+                            role="tab" 
+                            aria-controls="no-forecast" 
+                            aria-selected="true">
+                                {{ "now"|date('d') }} {{ "now"|date('F')|trans }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="card-body p-0" class="tab-content" id="myTabContent">
+                <div class="tab-content" id="myTabContent">
+                    {% for index, forecast in firstForecasts %}
+                        {% include 'web/meteorological_forecast/forecast_detail.html.twig' with {
+                            tabId: 'day' ~ forecast.dateObject|date('d') ~ forecast.dateObject|date('m'),
+                            forecast: forecast,
+                            first: index == 0,
+                            slug: slug,
+                            currentWeatherInfo: currentWeatherInfo,
+                            mine: mine
+                        } %}  
+                    {% else %}
+                        {% include 'web/meteorological_forecast/forecast_detail.html.twig' with {
+                            tabId: 'no-forecast-tab',
+                            forecast: null,
+                            first: true,
+                            slug: slug,
+                            currentWeatherInfo: currentWeatherInfo
+                        } %}  
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-5 mt-3 mt-lg-0 col-small-padding">
+        <div class="card pronostico-extendido">
+            <div class="card-header">
+                Próximos días
+            </div>
+            <div class="card-body">
+                {% for forecast in forecasts %}
+                    {% include 'web/meteorological_forecast/extended_forecast.html.twig' with {
+                        forecast: forecast
+                    }%}
+                {% endfor %}
+            </div>
+            <div class="day">
+                <div class="row mb-5">
+                    <div class="col">
+                        <p class="text-center">
+                            <a class="" target="_blank" href="https://rammb-slider.cira.colostate.edu/?sat=goes-16&z=1&im=12&ts=1&st=0&et=0&speed=130&motion=loop&map=1&lat=0&opacity%5B0%5D=1&hidden%5B0%5D=0&pause=0&slider=-1&hide_controls=0&mouse_draw=0&follow_feature=0&follow_hide=NaN&s=rammb-slider&sec=full_disk&p%5B0%5D=geocolor&x=10848&y=10848">
+                                <img class="" style="width: 70px;" src="{{ asset('assets/img/world.png') }}" alt="world">
+                            </a>
+                        </p>
+                        <p class="text-center">
+                            <span class="title">Imagen satelital</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row descripcion">
+                    <div class="col">
+                        {% if firstForecasts|length > 0 %}
+                        <p>{{ (firstForecasts|first).description }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col text-center">
+                        <img src="{{ asset('assets/img/tabla_uv.jpg') }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "web/meteorological_forecast/hour_extended_forecast.html.twig" with {
+    hourForecasts: hourForecasts
+} %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'web/base.html.twig' %}
+
+{% block wWeatherTrendMenuClass %}{{ type == constant('AppBundle\\Entity\\WeatherTrend::TYPE_WEATHER') ? 'active' : '' }}{% endblock %}
+{% block cWeatherTrendMenuClass %}{{ type == constant('AppBundle\\Entity\\WeatherTrend::TYPE_CLIMATE') ? 'active' : '' }}{% endblock %}
+{% block sWeatherTrendMenuClass %}{{ type == constant('AppBundle\\Entity\\WeatherTrend::TYPE_SNOW') ? 'active' : '' }}{% endblock %}
+
+{% block pageTitle %}
+    {% if type == constant('AppBundle\\Entity\\WeatherTrend::TYPE_WEATHER') %}Tendencia climática{% endif %}
+    {% if type == constant('AppBundle\\Entity\\WeatherTrend::TYPE_CLIMATE') %}Climatología{% endif %}
+    {% if type == constant('AppBundle\\Entity\\WeatherTrend::TYPE_SNOW') %}Nivología{% endif %}
+{% endblock %}
+
+{% block topMenu %}
+
+{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center file">
+    {% if trend %}
+        <div class="col-12 col-md-8">
+            <iframe src="{{ fileUrl(trend.fileKey, {signed: false}) }}"
+                width="100%" height="600px">
+            </iframe>
+        </div>
+    {% else %}
+        <div class="col">
+            <p class="alert alert-info"> No se encontró información de 
+                {% if type == constant('AppBundle\\Entity\\WeatherTrend::TYPE_WEATHER') %}tendencia climática{% endif %}
+                {% if type == constant('AppBundle\\Entity\\WeatherTrend::TYPE_CLIMATE') %}climatología{% endif %}
+                {% if type == constant('AppBundle\\Entity\\WeatherTrend::TYPE_SNOW') %}nivología{% endif %}
+            </p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

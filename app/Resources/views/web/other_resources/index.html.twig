@@ -1,0 +1,41 @@
+{% extends 'web/base.html.twig' %}
+
+{% block metResourcesMenuClass %}{{ type == constant('AppBundle\\Entity\\Link::TYPE_METEOROLOGY') ? 'active' : '' }}{% endblock %}
+{% block climResourcesMenuClass %}{{ type == constant('AppBundle\\Entity\\Link::TYPE_CLIMATOLOGY') ? 'active' : '' }}{% endblock %}
+{% block otherResourcesMenuClass %}{{ type == constant('AppBundle\\Entity\\Link::TYPE_OTHER') ? 'active' : '' }}{% endblock %}
+
+{% block pageTitle %}
+    {% if type == constant('AppBundle\\Entity\\Link::TYPE_METEOROLOGY') %}Recursos Meteorológicos{% endif %}
+    {% if type == constant('AppBundle\\Entity\\Link::TYPE_CLIMATOLOGY') %}Recursos Climatológicos{% endif %}
+    {% if type == constant('AppBundle\\Entity\\Link::TYPE_OTHER') %}Otros Recursos{% endif %}
+{% endblock %}
+{% block topMenu %}
+
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    {% for link in links %}
+        <div class="col-12 col-md-6">
+            <div class="card other-resources mb-4">
+                <a href="{{link.url}}" target="_blank">
+                    <div class="card-body d-flex">
+                        <div class="icon">
+                            <i class="flaticon-share"></i>
+                        </div>
+                        <div>
+                            <p class="mb-0 pt-1">{{link.name}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    {% if links|length == 0 %}
+        <div class="col">
+            <p class="alert alert-info"> No se encontraron recursos</p>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

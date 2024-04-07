@@ -1,0 +1,27 @@
+api_meteorological_forecast:
+  type: rest
+  resource: AppBundle\Controller\Api\v1\MeteorologicalForecastController
+  
+api_aeronautical_forecast_v1:
+  type: rest
+  resource: AppBundle\Controller\Api\v1\AeronauticalForecastController
+
+api_maritime_forecast:
+  type: rest
+  resource: AppBundle\Controller\Api\v1\MaritimeForecastController
+
+api_road:
+  type: rest
+  resource: AppBundle\Controller\Api\v1\RoadController
+
+api_link:
+  type: rest
+  resource: AppBundle\Controller\Api\v1\LinkController
+
+api_weather_trend:
+  type: rest
+  resource: AppBundle\Controller\Api\v1\WeatherTrendController
+
+api_weather:
+  type: rest
+  resource: AppBundle\Controller\Api\v1\WeatherController

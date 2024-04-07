@@ -1,0 +1,33 @@
+# This file sets the configuration of the main menu. If your backend is simple,
+# you probably can leave the 'menu' option empty and rely on the default menu
+# created by EasyAdmin.
+#
+# NOTE: this demo application splits the backend configuration into several
+# small files for educational purposes. In your application you can put the
+# entire backend configuration in just one file.
+#
+# The configuration options are explained in detail in the bundle documentation,
+# which is published at https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    design:
+        menu:
+        - { label: 'home', default: true, icon: 'home', route: 'easyHome' }
+        - label: menu.forecasts
+          icon: files-o
+          children:
+            - { label: menu.meteorological_forecast, icon: thermometer-half, entity: 'MeteorologicalForecast' }
+            - { label: menu.hour_meteorological_forecast, icon: thermometer-half, entity: 'HourMeteorologicalForecast' }
+            - { label: menu.aeronautical_forecast, icon: plane, entity: 'AeronauticalForecast' }
+            - { label: menu.maritime_forecast, icon: ship, entity: 'MaritimeForecast' }
+        - { label: menu.road, icon: road, entity: 'Road' }
+        - { label: menu.link, icon: 'link', entity: 'Link' }
+        - label: menu.risks_controls
+          icon: thermometer-half
+          children:
+            - { label: menu.risks_controls_general, entity: RisksControls }
+            - { label: menu.risks_controls_specific, entity: RisksControlsSpecific }
+        - { label: menu.weather_trend, icon: 'file-pdf-o', entity: 'WeatherTrend' }
+        - { label: menu.alerts, icon: 'exclamation-circle', entity: 'Alert' }
+        - { label: menu.admins, icon: 'users', entity: 'Admin' }
+        - { label: menu.icons, route: 'admin_icons_reference' }
+        - { label: menu.app_configurations, icon: mobile, route: 'admin_show_app_config' }

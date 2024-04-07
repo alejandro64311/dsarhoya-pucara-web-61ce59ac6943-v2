@@ -1,0 +1,165 @@
+{% extends 'base.html.twig' %}
+
+{% block baseBody %}
+
+<div class="d-flex" id="wrapper">
+
+  <!-- Sidebar -->
+  <div class="bg-primary-color border-right" id="sidebar-wrapper">
+    <div>
+      <div class="sidebar-heading">Menú
+        <button class="btn btn-text d-none d-md-block" id="menu-toggle"><i class="flaticon-menu"></i></button>
+      </div>
+      <div class="list-group list-group-flush bg-primary-color text-white">
+        <a href="{{ path('web_meteorological_forecast_place') }}"
+          class="list-group-item list-group-item-action bg-primary-color text-white {% block meteorologicalForecastMenuClass %}{% endblock %}">
+          <i class="flaticon-icon-861076"></i>
+          <span>Pronóstico Diario</span>
+        </a>
+        <a href="{{ path('web_extended_meteorological_forecast_place') }}"
+          class="list-group-item list-group-item-action bg-primary-color text-white {% block extendedMeteorologicalForecastMenuClass %}{% endblock %}">
+          <i class="flaticon-icon-861076"></i>
+          <span>Proyección Extendida</span>
+        </a>
+        {% if show_menu('aeronautical_forecast') %}
+          <a href="{{ path('web_aeronautical_forecast') }}"
+            class="list-group-item list-group-item-action bg-primary-color text-white {% block aeronauticalForecastMenuClass %}{% endblock %}">
+            <i class="flaticon-plane"></i>
+            <span>Pronóstico aeronáutico</span></a>
+        {% endif %}
+        <a href="{{ path('web_road_status') }}"
+          class="list-group-item list-group-item-action bg-primary-color text-white {% block roadStatusMenuClass %}{% endblock %}">
+          <i class="flaticon-road"></i>
+          <span>Estado de los caminos</span></a>
+        
+        <a href="{{ path('web_weather_trend', {type: constant('AppBundle\\Entity\\WeatherTrend::TYPE_WEATHER')}) }}"
+          class="list-group-item list-group-item-action bg-primary-color text-white {% block wWeatherTrendMenuClass %}{% endblock %}">
+          <i class="flaticon-bar-chart"></i>
+          <span>Tendencia climática</span></a>
+        
+        <a href="{{ path('web_weather_trend', {type: constant('AppBundle\\Entity\\WeatherTrend::TYPE_CLIMATE')}) }}"
+          class="list-group-item list-group-item-action bg-primary-color text-white {% block cWeatherTrendMenuClass %}{% endblock %}">
+          <i class="flaticon-bar-chart"></i>
+          <span>Climatología</span></a>
+        
+        <a href="{{ path('web_weather_trend', {type: constant('AppBundle\\Entity\\WeatherTrend::TYPE_SNOW')}) }}"
+          class="list-group-item list-group-item-action bg-primary-color text-white {% block sWeatherTrendMenuClass %}{% endblock %}">
+          <i class="flaticon-bar-chart"></i>
+          <span>Nivología</span></a>
+
+        <a href="{{ path('web_other_resources', {type: constant('AppBundle\\Entity\\Link::TYPE_METEOROLOGY')}) }}"
+          class="list-group-item list-group-item-action bg-primary-color text-white {% block metResourcesMenuClass %}{% endblock %}">
+          <i class="flaticon-share"></i>
+          <span>Recursos meteorológicos</span></a>
+        {# <a href="{{ path('web_other_resources', {type: constant('AppBundle\\Entity\\Link::TYPE_CLIMATOLOGY')}) }}"
+          class="list-group-item list-group-item-action bg-primary-color text-white {% block climResourcesMenuClass %}{% endblock %}">
+          <i class="flaticon-share"></i>
+          <span>Recursos climatológicos</span></a> #}
+        <a href="{{ path('web_other_resources', {type: constant('AppBundle\\Entity\\Link::TYPE_OTHER')}) }}"
+          class="list-group-item list-group-item-action bg-primary-color text-white {% block otherResourcesMenuClass %}{% endblock %}">
+          <i class="flaticon-share"></i>
+          <span>Otros recursos</span></a>
+        <a href="{{ path('web_alerts') }}"
+          class="list-group-item list-group-item-action bg-primary-color text-white {% block alertsMenuClass %}{% endblock %}">
+          <i class="flaticon-alarm"></i>
+          <span>Alertas</span></a>
+      </div>
+    </div>
+    {% if slug is defined and show_place_forecast_in_menu() %}
+      <div class="menu-forecast">
+        <p>
+          <small> {{ show_place_forecast_in_menu()|place_name }}</small>
+        </p>
+        {% set currentWeatherInfo = placeWeatherInfo(mine(), show_place_forecast_in_menu()) %}
+        <p>
+          <small>Tº Actual</small> {{ currentWeatherInfo['temperature'] is defined ? currentWeatherInfo['temperature']|round : '' }}<sup>ºC</sup>
+        </p>
+        <p>
+          <small>Hum. Rel.</small> {{ currentWeatherInfo['humidity'] is defined ? currentWeatherInfo['humidity'] : '' }}%
+        </p>
+        {% if currentWeatherInfo['wind']['speed'] is defined %}
+          <p><small>Viento</small> {{currentWeatherInfo['wind']['speed']}} m/s</p>
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="brands">
+      <img class="logo-minera" src="{{ asset('assets/img/' ~ mine_slug() ~ '/logo.jpg') }}" atl="Logo Minera Caserones">
+      <img class="logo-pucara" src="{{ asset('assets/img/logo-pucara.png') }}" atl="Logo Pucara">
+      {% include 'web/footer/' ~ mine_slug() ~ '.html.twig' ignore missing %}
+    </div>
+    
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper" class="p-2 px-md-3 py-md-4 p-lg-4">
+    <header>
+      <button class="btn btn-text d-md-none" id="menu-toggle-2"><i class="flaticon-menu"></i></button>
+      <div class="flex-shrink-1">
+        <h1 class="page-title mb-lg-4">{% block pageTitle %}{% endblock %}</h1>
+      </div>
+      {% block topMenu %} {% endblock %}
+    </header>
+    <div class="container-fluid">
+      {% block body %}
+      <h1 class="mt-4">Simple Sidebar</h1>
+      <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on
+        larger screens. When toggled using the button below, the menu will change.</p>
+      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional,
+        and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the
+        menu when clicked.</p>
+      {% endblock %}
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+
+<!-- Bootstrap core CSS -->
+<link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/flaticon/flaticon.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/web.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/' ~ mine_slug() ~ '.css') }}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+  $("#menu-toggle").click(function (e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+  $("#menu-toggle-2").click(function (e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+  toggleMenu();
+
+  $(window).resize(function () {
+    toggleMenu()
+  });
+
+  function toggleMenu() {
+    let screenWidth = $(document).width()
+    if (screenWidth >= 768 && screenWidth <= 991) {
+      $("#wrapper").addClass("toggled");
+    } else {
+      $("#wrapper").removeClass("toggled");
+    }
+  }
+
+</script>
+
+{% endblock %}

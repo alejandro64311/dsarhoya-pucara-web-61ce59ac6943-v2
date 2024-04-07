@@ -1,0 +1,10 @@
+{% extends '@EasyAdmin/default/list.html.twig' %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-md-12 text-right margin-bottom">
+            <a role="button" class="btn btn-info" href="{{ path('admin_aeronautical_forecast_import') }}" title="Importación de pronósticos Aeronático">Importar Pronósticos</a>
+        </div>
+    </div>
+    {{ parent() }}
+{% endblock main %}

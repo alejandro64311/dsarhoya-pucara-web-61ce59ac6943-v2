@@ -1,0 +1,21 @@
+# Dsarhoya BaseBundle Configure
+dsarhoya_base: 
+    routes: 
+        ROLE_SUPER_ADMIN: { route: indexAdmin }
+        ROLE_ADMIN: { route: easyHome }
+    uniqueUser: false
+    softDeleteable: false
+    serviceName: "%SERVICE_NAME%"
+    classes: 
+        user: { class: AppBundle\Entity\User }
+        profile: { class: AppBundle\Entity\Profile }
+        company: { class: AppBundle\Entity\Company }
+        action: { class: AppBundle\Entity\Action }
+    email_service:
+        from_email: "%from_email%"
+        type: ses
+        ses_key: "%ses_key%"
+        ses_secret: "%ses_secret%"
+        ses_region: "%ses_region%"
+    admin_menu_extension:
+        api_keys: { route: apiKeysIndex, display:"Simple API Keys"}

@@ -1,0 +1,59 @@
+# # The configuration options are explained in detail in the bundle documentation,
+# # which is published at https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    entities:
+        Road:
+            class: AppBundle\Entity\Road
+            # label: entity.label.plant
+            controller: AppBundle\Controller\Admin\RoadController
+            disabled_actions: [new, edit]
+            list:
+                title: menu.road
+                sort: [dateObject, 'DESC']
+                actions:
+                    - { name: 'new', icon: 'plus-circle', label: 'button.new %%entity_label%%' }
+                    - { name: 'edit', icon: 'edit', css_class: 'btn btn-warning', label: button.edit }
+                    - { name: 'show', icon: 'eye', css_class: 'btn btn-info', label: button.show }
+                    - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: button.delete }
+                fields:
+                    - { property: 'dateObject', label: 'entity.property.date' }
+                    - { property: 'name', label: 'entity.property.name' }
+                    - { property: 'emissionDate', label: 'entity.property.emissionDate' }
+                    - { property: 'validityDate', label: 'entity.property.validityDate' }
+                    - { property: 'createdAt', label: 'entity.property.created_at' }
+            search:
+                fields: [name, dateObject, createdAt, emissionDate]
+                sort: [dateObject, 'DESC']
+            show:
+                fields:
+                    - { property: name, label: 'entity.property.name' }
+                    - { property: dateObject, label: 'entity.property.date' }
+                    - { property: emissionDate, label: entity.property.emissionDate }
+                    - { property: validityDate, label: entity.property.validityDate }
+                    - { property: name, label: entity.property.name }
+                    - { property: transit, label: entity.property.transit }
+                    - { property: index, label: entity.property.index }
+                    - { property: risk, label: entity.property.risk }
+                    - { property: condition, label: entity.property.condition }
+                    - { property: alert, label: entity.property.alert }
+                    - { property: observations, label: entity.property.observations }
+                    - { property: createdAt, label: entity.property.createdAt }
+                    - { property: updatedAt, label: entity.property.updatedAt }
+                    - { property: createdBy, label: entity.property.createdBy }
+                    - { property: updatedBy, label: entity.property.updatedBy }
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-6', label: 'app.basic', icon: 'pencil' }
+                    - { property: name, label: 'entity.property.name' }
+                    - { property: dateObject, label: 'entity.property.date' }
+                    - { property: emissionDate, label: entity.property.emissionDate }
+                    - { property: validityDate, label: entity.property.validityDate }
+                    - { property: name, label: entity.property.name }
+                    - { property: transit, label: entity.property.transit }
+                    - { property: index, label: entity.property.index }
+                    - { property: risk, label: entity.property.risk }
+                    - { property: condition, label: entity.property.condition }
+                    - { property: alert, label: entity.property.alert }
+                    - { property: observations, label: entity.property.observations }
+
+

@@ -1,0 +1,53 @@
+{% extends 'web/base.html.twig' %}
+
+{% block aeronauticalForecastMenuClass %}active{% endblock %}
+{% block pageTitle %}Pronóstico aeronáutico {% endblock %}
+{% block topMenu %}
+
+{% endblock %}
+
+{% block body %}
+<div class="card aeronautical-forecast">
+    <div class="card-header">
+        {% if forecast is null %}
+            <p class="alert alert-info">Pronóstico no disponible</p>
+        {% else %}
+            {# <h2>PR-OPE-CR-02 FO02</h2> #}
+            <h6>EMISIÓN: {{forecast.emissionDate|date('l')|trans}}, {{forecast.emissionDate|date('d/m/Y H:i')|trans}} Hrs</h6>
+            <h6>VALIDEZ: {{forecast.validityDate|date('l')|trans}}, {{forecast.validityDate|date('d/m/Y H:i')|trans}} Hrs</h6>
+        {% endif %}
+    </div>
+    {% if forecast is not null %}
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-6 ">
+                    <div class="left-col">
+                        <h3 class="card-title">Aeródromo Los Pelambres (SCNK)</h3>
+                        <h5>Situación Sinóptica</h5>
+                        <p>{{forecast.synopticSituation}}</p>
+                        <h5>Observaciones</h5>
+                        <p>{{forecast.observations}}</p>
+                        <h5>Temperaturas Min/Max °C</h5>
+                        <p>{{forecast.minimumTemperature}} / {{forecast.maximumTemperature}}</p>
+                        <h5>Viento Dirección e Intensidad a nivel de superficie en Nudos.</h5>
+                        <p>{{forecast.windSummary}}</p>
+                        <h5>Estimación operatividad meteorológica en el aeródromo</h5>
+                        <p>{{forecast.operatingEstimate}}</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="right-col">
+                        <h3 class="card-title">Pronóstico de Rutas</h3>
+                        <h5>Situación sinóptica Ruta</h5>
+                        <p>{{forecast.synopticSituationRoute}}</p>
+                        <h5>Santiago - Los Pelambres Interior </h5>
+                        <p>{{forecast.santiagoPelambresRoute}}</p>
+                        <h5>La Serena - Los Pelambres costa </h5>
+                        <p>{{forecast.serenaPelambresRoute}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

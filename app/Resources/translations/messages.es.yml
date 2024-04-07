@@ -1,0 +1,174 @@
+Admin: Administrador
+MeteorologicalForecast: Pronóstico Meteorológico
+HourMeteorologicalForecast: Pronóstico Meteorológico por hora
+AeronauticalForecast: Pronóstico Aeronáutico
+MaritimeForecast: Pronóstico Marítimo
+Road: Estados de Caminos
+WeatherTrend: Tendencia climática
+Alert: Alerta
+RisksControls: Riesgos y controles generales
+RisksControlsSpecific: Riesgos y controles específicos
+AppConfiguration: Configuración de la App
+
+
+menu:
+  admins: Administradores
+  meteorological_forecast: Meteorológico
+  hour_meteorological_forecast: Meteorológico por hora
+  aeronautical_forecast: Aeronáutico
+  maritime_forecast: Marítimo
+  road: Caminos
+  link: Enlaces
+  forecasts: Pronósticos
+  weather_trend: Tendencia climática
+  alerts: Alertas
+  alert: Alerta
+  icons: Iconos disponibles
+  risks_controls: Riesgos y controles
+  risks_controls_general: Generales
+  risks_controls_specific: Específicos
+  app_configurations: Configuraciones de la App
+
+app:
+  users: Usuarios
+  list.back: Volver
+  basic: Datos Básicos
+  detail: Detalles
+  wind: Viento
+  rain: Lluvia
+  snow: Nieve
+  alert: Alerta
+
+Listado de %entity_label%: 'Listado de %entity_label%'
+
+button:
+  new %entity_label%: Crear %entity_label%
+  new_male: Nuevo
+  new_female: Nueva
+  new: Nuevo
+  show: Ver
+  edit: Editar
+  delete: Borrar
+
+entity:
+  property:
+    name: Nombre
+    email: Correo Electrónico
+    active: Activo?
+    accountValidated: Cuenta Valida?
+    created_at: Creado
+    code: Código
+    state: Estado
+    place: Lugar
+    date: Fecha
+    url: Enlace
+    rut: RUT
+    year: Año
+    contact_name: Nombre de contacto
+    type: Tipo
+    event: Evento
+    request: Parámetros
+    response: Respuesta
+    emissionDate: Fecha de Emisión
+    validityDate: Fecha de validez
+    generalWeather: Tiempo general
+    generalWeatherIcon: Icono tiempo general 
+    synopticSituation: Situación sinóptica
+    weatherAM: Tiempo AM
+    weatherAMIcon: Icono tiempo AM
+    weatherPM: Tiempo PM
+    weatherPMIcon: Icono tiempo PM
+    maximumTemperature: Temperatura máxima
+    minimumTemperature: Temperatura mínima
+    isotherm: Isoterma
+    visibility: Visibilidad
+    windDirectionAM: Dirección del viento AM
+    windDirectionPM: Dirección del viento PM
+    maximumGustWind: Racha máxima
+    uvRadiation: Radiación UV
+    uvRadiationMapUrl: Mapa Radiación UV (URL)
+    rainLast24hours: Últimas 24 horas (Lluvia)
+    rainAccumulated: Acumulada (Lluvia)
+    rainNormal: Normal (Lluvia)
+    rainSurplusDeficit: Superávit/Déficit (Lluvia)
+    snowLast24hours: Últimas 24 horas (Nieve)
+    snowAccumulated: Acumulada (Nieve)
+    snowNormal: Normal (Nieve)
+    snowSurplusDeficit: Superávit/Déficit (Nieve)
+    satelitalImageUrl: Imagen de Satélite (URL)
+    seaConditions: Condiciones del mar
+    windSummary: Viento dirección e intensidad a nivel de superficie en Nudos
+    operatingEstimate: Estimación operatividad  meteorológica en el aeródromo
+    synopticSituationRoute: Situación sinóptica Ruta
+    santiagoPelambresRoute: Santiago - Los Pelambres Interior 
+    serenaPelambresRoute:  La Serena - Los Pelambres costa 
+    observations: Observaciones
+    createdAt: Creado
+    updatedAt: Actualizado
+    createdBy: Creado por
+    updatedBy: Actualizado por
+    forecast: Pronóstico
+    seaState: Estado del mar
+    # windIntensity: Viento intensidad
+    windDirectionObservation:  Observacion (Viento)
+    heightWavesGeneral: Altura de Olas
+    heightWavesAM: Altura de Olas AM
+    heightWavesPM: Altura de Olas PM
+    speedWavesAM: Velocidad de la Ola AM
+    speedWavesPM: Velocidad de la Ola PM
+    transit: Tránsito
+    index: Índice
+    risk: Riesgo
+    condition: Condición
+    alert: Alertas
+    fileKey: Archivo
+    file: Archivo
+    humidity: Humedad mímima (%)
+    maximumHumidity: Humedad máxima (%)
+    electricActivity: Actividad Eléctrica (%)
+    cloudCover: Cobertura Nubosa
+    windDirection: Dirección del viento
+    windIntensity: Intensidad del viento
+    windGusts: Rachas de viento
+    temperature: Temperatura
+    thermalSensation: Sensación térmica
+    relativeHumidity: Humedad relativa
+    precipitationProbability: Prob. de precipitación
+    estimatedAccumulation: Acumulado estimado
+    electricalActivityProbability: Prob. actividad eléctrica
+    windUnid: Unidad de Viento
+    description: Descripción
+    extendedSynopticSituation: Situación sinop. Ext.
+    title: Título
+    severity: Severidad
+    enabled: Habilitada
+    body: Cuerpo
+    published: Publicada
+    icon: Icono
+    mine: Mina
+    risks: Riesgos
+    controls: Controles
+    threshold: Límite
+    created_by: Creado por
+    soilFreezing: Suelo congelado
+    snowProbability: Prob. precipitación de Nieve
+    rainProbability: Prob. precipitación de Lluvia
+    homeHeaderText: Texto del encabezado del Home
+
+success:
+  user:
+    created: Usuario creado con éxito.
+    updated: Usuario actualizado con éxito.
+    deleted: Usuario borrado con éxito.
+    
+
+of: de
+home: Inicio
+breadcrumb.home: Inicio
+
+option.active: Activo
+option.inactive: Bloqueado
+
+Seleccione el archivo xls: Seleccione el archivo xls
+Link: Link
+Fecha: Fecha

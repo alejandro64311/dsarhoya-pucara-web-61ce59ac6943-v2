@@ -1,0 +1,106 @@
+{% extends 'web/base.html.twig' %}
+
+{% block extendedMeteorologicalForecastMenuClass %}active{% endblock %}
+{% block pageTitle %}
+    Pronóstico Diario
+{% endblock %}
+{% block topMenu %}
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <small>Localidades</small> <i class="flaticon-menu-1"></i>
+    </button>
+    <nav class="navbar navbar-expand-lg navbar-light" id="localidades">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                {% for s in slugs %}
+                <li class="nav-item {{ s == slug ? 'active' : '' }}">
+                    <a class="nav-link"
+                        href="{{ path('web_extended_meteorological_forecast_place', {slug: s}) }}">{{ places[s].name is defined ? places[s].name : s|capitalize}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block body %}
+    {% if extendedForecasts is not empty %}
+        <div class="row mt-3 mt-lg-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        Pronóstico extendido
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive ">
+                            <table class="table table-borderless detail-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        {% for forecast in extendedForecasts %}
+                                            <th scope="col">{{ forecast.dateObject|date('d') }} {{ forecast.dateObject|date('F')|trans }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Cobertura Nubosa</th>
+                                        {% for forecast in extendedForecasts %}
+                                            <td>
+                                                <div class="forecast-icon mx-auto">
+                                                    <img src="{{ forecast.generalWeatherIcon|icon_url }}" alt="Carrizalillo">
+                                                </div>
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <p>Direc. ° A.M</p>
+                                            <p>Direc. ° P.M</p>
+                                            <p>Racha max {{ windUnit(mine.slug) }}</p>
+                                        </th>
+                                        {% for forecast in extendedForecasts %}                        
+                                            <td>
+                                                <p>{{ forecast.windDirectionAM ? : 's/i' }}</p>
+                                                <p>{{ forecast.windDirectionPM ? : 's/i' }}</p>
+                                                <p>{{forecast.maximumGustWind ? : 's/i'}} {{forecast.maximumGustWind ? forecast.getWindUnitName() : ''}}</p>
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <p>MIN °C</p>
+                                            <p>MAX °C</p>
+                                        </th>
+                                        {% for forecast in extendedForecasts %}                        
+                                            <td>
+                                                <p>{{ forecast.minimumTemperature ? forecast.minimumTemperature ~ 'º' : 's/i' }}</p>
+                                                <p>{{ forecast.maximumTemperature ? forecast.maximumTemperature ~ 'º' : 's/i' }}</p>
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <p>Isoterma 0ºC m.s.n.m. </p>
+                                        </th>
+                                        {% for forecast in extendedForecasts %}                        
+                                            <td>
+                                                <p>{{ forecast.isotherm ? forecast.isotherm : 's/i' }}</p>
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col col-md-12 mt-3">
+                <p class="alert alert-info"> Sin pronóstico extendido</p>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

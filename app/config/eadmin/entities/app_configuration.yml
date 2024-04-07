@@ -1,0 +1,15 @@
+easy_admin:
+    entities:
+        AppConfiguration:
+            class: AppBundle\Entity\AppConfiguration
+            disabled_actions: [new, delete, list]
+            show:
+                fields:
+                    - { property: homeHeaderText, label: 'entity.property.homeHeaderText' }
+                    - { property: updatedAt, label: 'entity.property.updatedAt' }
+                    - { property: updatedBy, label: 'entity.property.updatedBy' }
+                    
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-6', label: 'app.basic', icon: 'pencil' }
+                    - { property: homeHeaderText, label: 'entity.property.homeHeaderText' }

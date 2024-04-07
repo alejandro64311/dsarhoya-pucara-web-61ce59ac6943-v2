@@ -1,0 +1,47 @@
+# The configuration options are explained in detail in the bundle documentation,
+# which is published at https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    entities:
+        RisksControlsSpecific:
+            class: AppBundle\Entity\RisksControls
+            controller: AppBundle\Controller\Admin\RisksControlsSpecificController
+            list:
+                dql_filter: "entity.specific = true"
+                # title: menu.risks_controls_specific
+                sort: [ mine, ASC ]
+                actions:
+                    - { name: 'new', icon: 'plus-circle', label: 'button.new %%entity_label%%' }
+                    - { name: 'show', icon: 'eye', css_class: 'btn btn-info', label: button.show }
+                    - { name: 'edit', icon: 'edit', css_class: 'btn btn-warning', label: button.edit }
+                    - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: button.delete }
+                fields:
+                    # - { property: mine, label: entity.property.mine }
+                    - { property: typeLabel, label: entity.property.type }
+                    - { property: threshold, label: entity.property.threshold }
+                    # - { property: risks, label: entity.property.risks }
+                    # - { property: controls, label: entity.property.controls }
+                    - { property: createdAt, label: entity.property.created_at }
+                    - { property: createdBy, label: entity.property.created_by }
+            search:
+                fields: [ mine, type, createdBy.name ]
+                dql_filter: "entity.specific = true"
+                sort: [ mine, ASC ]
+            show:
+                fields:
+                    # - { property: mine, label: entity.property.mine }
+                    - { property: typeLabel, label: entity.property.type,  }
+                    - { property: threshold, label: entity.property.threshold }
+                    - { property: risks, label: entity.property.risks }
+                    - { property: controls, label: entity.property.controls }
+                    - { property: createdAt, label: entity.property.created_at }
+                    - { property: createdBy, label: entity.property.created_by }
+                    # - { property: updatedAt, label: entity.property.updated_at }
+                    # - { property: updatedBy, label: entity.property.updated_by }
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-6', label: 'app.basic', icon: 'pencil' }
+                    # - { property: mine, label: entity.property.mine }
+                    - { property: type, label: entity.property.type, type: AppBundle\Form\Admin\RisksControlsTypeType }
+                    - { property: threshold, label: entity.property.threshold }
+                    - { property: risks, label: entity.property.risks }
+                    - { property: controls, label: entity.property.controls }

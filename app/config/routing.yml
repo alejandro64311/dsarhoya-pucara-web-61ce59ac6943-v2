@@ -1,0 +1,35 @@
+easy_admin_bundle:
+    resource: "@AppBundle/Controller/Admin"
+    type: annotation
+    prefix: /secured/admin
+
+web:
+    resource: "@AppBundle/Controller/Web"
+    type: annotation
+    prefix: /
+
+base_bundle:
+    resource: "@dsarhoyaBaseBundle/Resources/config/routing.yml"
+
+base_bundle_admin:
+    resource: "@dsarhoyaBaseBundle/Resources/config/routingAdmin.yml"
+    prefix:   /secured/superadmin
+
+api_key_authenticator_admin:
+    resource: "@dsarhoyaDSYApiKeyAuthenticatorBundle/Resources/config/extensions.yml"
+    prefix:   /secured/superadmin/api-key-auth
+
+# api_login_me:
+#     defaults: { _controller: AppBundle:Api/Login:login }
+#     methods: [ 'POST' ]
+#     path:   /login-api/1/login
+
+api:
+    resource: "@AppBundle/Resources/config/routing_v1.yml"
+    prefix:   /api/1
+    type: rest
+
+api_v2:
+    type: rest
+    resource: "@AppBundle/Resources/config/routing_v2.yml"
+    prefix:   /api/2
