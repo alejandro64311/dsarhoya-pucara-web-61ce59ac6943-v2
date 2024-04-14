@@ -19,8 +19,10 @@ class MineService
 
     public function getMine(Request $request): Mine
     {
-        $subdomain = explode('.', $request->getHost())[0];
-
+        // $subdomain = 'pucara_test';
+        $subdomain = 'pucara_teniente';
+        // $subdomain = explode('.', $request->getHost())[0];
+        
         return $this->getMineBySubdomain($subdomain);
     }
 

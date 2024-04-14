@@ -2,11 +2,11 @@
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
-    database_host: 127.0.0.1
-    database_port: ~
+    database_host: db-steev.c7hfphuddxku.us-east-1.rds.amazonaws.com
+    database_port: 3306
     database_name: symfony
-    database_user: root
-    database_password: ~
+    database_user: synfony
+    database_password: Root#1234
     # You should uncomment this if you want to use pdo_sqlite
     #database_path: '%kernel.project_dir%/var/data/data.sqlite'
 
@@ -18,13 +18,14 @@ parameters:
     # Dsarhoya BaseBundle
     COMPANY_NAME: 'Pucará'
     SERVICE_NAME: 'App de clima'
-    superAdminPassDsy: ~
+    superAdminPassDsy: 7110eda4d09e062aa5e4a390b0a572ac0d2c0220
 
     # AWS SES
     ses_key: ~
     ses_secret: ~
     ses_region: ~
-    from_email: contacto@dsarhoya.cl
+    from_email: alejo64311@hotmail.com
+    #contacto@dsarhoya.cl
 
     # AWS S3
     s3_key: ~
@@ -36,3 +37,4 @@ parameters:
     weather_api_key: ~
 
     stage_mine: ~
+    # "url": "https://github.com/alejandro64311/dsy-files-bundle.git"

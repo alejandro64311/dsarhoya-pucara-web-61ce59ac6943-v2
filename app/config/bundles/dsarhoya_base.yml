@@ -13,9 +13,11 @@ dsarhoya_base:
         action: { class: AppBundle\Entity\Action }
     email_service:
         from_email: "%from_email%"
-        type: ses
-        ses_key: "%ses_key%"
-        ses_secret: "%ses_secret%"
-        ses_region: "%ses_region%"
+        # type: ses
+        type: sendgrid
+        sendgrid_apikey: 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
+        # ses_key: "%ses_key%"
+        # ses_secret: "%ses_secret%"
+        # ses_region: "%ses_region%"
     admin_menu_extension:
         api_keys: { route: apiKeysIndex, display:"Simple API Keys"}

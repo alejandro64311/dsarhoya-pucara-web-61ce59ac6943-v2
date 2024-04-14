@@ -35,10 +35,6 @@
         {
             "type": "vcs",
             "url": "https://bitbucket.org/dsarhoya/dsyexcelbundle.git"
-        },
-        {
-            "type": "composer",
-            "url": "https://packages.dsy.cl"
         }
     ],
     "require": {
@@ -59,6 +55,7 @@
         "jms/serializer-bundle": "^2.4",
         "nelmio/cors-bundle": "^1.5",
         "nesbot/carbon": "1.*",
+        "sendgrid/sendgrid": "5.6.1",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^5.0.0",
         "symfony/monolog-bundle": "^3.1.0",
