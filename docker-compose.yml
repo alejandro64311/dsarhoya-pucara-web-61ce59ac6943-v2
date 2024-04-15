@@ -15,7 +15,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - "${COMPOSE_PORT}:80"
+      - "8080:80"
 
 # version: '3'
 # services:
