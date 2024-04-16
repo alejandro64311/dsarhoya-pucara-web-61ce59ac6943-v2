@@ -1,0 +1,58 @@
+{% extends 'web/base.html.twig' %}
+
+{% block alertsMenuClass %}active{% endblock %}
+{% block pageTitle %}Alertas{% endblock %}
+
+{% block topMenu %}
+
+{% endblock %}
+
+{% block bodyClass %}alerts{% endblock %}
+
+{% block body %}
+<div class="row">
+    {% for alert in alerts %}
+        <div class="col-md-6 col-sm-12">
+            <div class="card pucara-alert">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="title">
+                                {{alert.title}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="logo">
+                                <img class="logo-minera" src="{{ asset('assets/img/' ~ mine_slug() ~ '/logo.jpg') }}" atl="Logo Minera Caserones">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="severity-icon mb-4 text-center">
+                        {% if alert.severity %}
+                            <div class="severity">
+                                <img src="{{ asset('assets/img/flags/flag_' ~ alert.severity ~ '.png') }}" alt="Flag">
+                            </div>
+                        {% endif %}
+                        {% if alert.icon %}
+                            <div class="icon">
+                                <img src="{{ alert.icon|icon_url }}" alt="Icon">
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="body">
+                        {{ alert.body|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% if alerts|length == 0 %}
+        <div class="col">
+            <p class="alert alert-info"> No se encontraron alertas</p>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

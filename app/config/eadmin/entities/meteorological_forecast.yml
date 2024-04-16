@@ -1,0 +1,112 @@
+# # The configuration options are explained in detail in the bundle documentation,
+# # which is published at https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    entities:
+        MeteorologicalForecast:
+            class: AppBundle\Entity\MeteorologicalForecast
+            # label: entity.label.plant
+            controller: AppBundle\Controller\Admin\MeteorologicalForecastController
+            disabled_actions: [new, edit]
+            # templates:
+            #   list: '@dsarhoyaDSYEasyAdmin/Default/list.html.twig'
+            list:
+                title: menu.meteorological_forecast
+                # dql_filter: "entity.role = 'ROLE_ADMIN' AND entity.deletedAt IS NULL"
+                sort: [dateObject, 'DESC']
+                actions:
+                    # - { name: 'new', icon: 'plus-circle', label: 'button.new %%entity_label%%' }
+                    # - { name: 'edit', icon: 'edit', css_class: 'btn btn-warning', label: button.edit }
+                    - { name: 'show', icon: 'eye', css_class: 'btn btn-info', label: button.show }
+                    - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: button.delete }
+                fields:
+                    - { property: 'place', label: 'entity.property.place' }
+                    - { property: 'dateObject', label: 'Fecha' }
+                    - { property: 'emissionDate', label: 'entity.property.emissionDate' }
+                    - { property: 'validityDate', label: 'entity.property.validityDate' }
+                    - { property: 'createdAt', label: 'entity.property.created_at' }
+            search:
+                fields: [place, dateObject, emissionDate, createdAt]
+                sort: ['dateObject', 'DESC']
+            show:
+                fields:
+                    - { property: 'place', label: 'entity.property.place' }
+                    - { property: 'dateObject', label: 'entity.property.date' }
+                    - { property: emissionDate, label: entity.property.emissionDate }
+                    - { property: validityDate, label: entity.property.validityDate }
+                    - { property: synopticSituation, label: entity.property.synopticSituation }
+                    - { property: visibility, label: entity.property.visibility }
+                    - { property: generalWeather, label: entity.property.generalWeather }
+                    - { property: generalWeatherIcon, label: entity.property.generalWeatherIcon }
+                    - { property: weatherAM, label: entity.property.weatherAM }
+                    - { property: weatherAMIcon, label: entity.property.weatherAMIcon }
+                    - { property: weatherPM, label: entity.property.weatherPM }
+                    - { property: weatherPMIcon, label: entity.property.weatherPMIcon }
+                    - { property: maximumTemperature, label: entity.property.maximumTemperature }
+                    - { property: minimumTemperature, label: entity.property.minimumTemperature }
+                    - { property: isotherm, label: entity.property.isotherm }
+                    - { property: uvRadiation, label: entity.property.uvRadiation }
+                    - { property: uvRadiationMapUrl, label: entity.property.uvRadiationMapUrl }
+                    - { property: satelitalImageUrl, label: entity.property.satelitalImageUrl }
+                    - { property: seaConditions, label: entity.property.seaConditions }
+                    - { property: windDirectionAM, label: entity.property.windDirectionAM }
+                    - { property: windDirectionPM, label: entity.property.windDirectionPM }
+                    - { property: maximumGustWind, label: entity.property.maximumGustWind }
+                    - { property: getWindUnitName, label: entity.property.windUnid }
+                    - { property: rainLast24hours, label: entity.property.rainLast24hours }
+                    - { property: rainAccumulated, label: entity.property.rainAccumulated }
+                    - { property: rainNormal, label: entity.property.rainNormal }
+                    - { property: rainSurplusDeficit, label: entity.property.rainSurplusDeficit }
+                    - { property: rainProbability, label: entity.property.rainProbability }
+                    - { property: electricActivity, label: entity.property.electricalActivityProbability }
+                    - { property: snowLast24hours, label: entity.property.snowLast24hours }
+                    - { property: snowAccumulated, label: entity.property.snowAccumulated }
+                    - { property: snowNormal, label: entity.property.snowNormal }
+                    - { property: snowSurplusDeficit, label: entity.property.snowSurplusDeficit }
+                    - { property: snowProbability, label: entity.property.snowProbability }
+                    - { property: soilFreezing, label: entity.property.soilFreezing }
+                    - { property: humidity, label: entity.property.humidity }
+                    - { property: maximumHumidity, label: entity.property.maximumHumidity }
+                    - { property: description, label: entity.property.extendedSynopticSituation }
+                    - { property: createdAt, label: 'entity.property.createdAt' }
+                    - { property: updatedAt, label: 'entity.property.updatedAt' }
+                    - { property: createdBy, label: 'entity.property.createdBy' }
+                    - { property: updatedBy, label: 'entity.property.updatedBy' }
+
+            # form:
+            #     fields:
+            #         - { type: 'group', css_class: 'col-sm-6', label: 'app.basic', icon: 'pencil' }
+            #         - { property: 'place', label: 'entity.property.place' }
+            #         - { property: 'dateObject', label: 'entity.property.date' }
+            #         - { property: 'emissionDate', label: 'entity.property.emissionDate', type_options: { widget: 'single_text' }, css_class: col-md-6 }
+            #         - { property: 'validityDate', label: 'entity.property.validityDate', type_options: { widget: 'single_text' }, css_class: col-md-6 }
+            #         - { property: 'synopticSituation', label: 'entity.property.synopticSituation' }
+            #         - { property: 'generalWeather', label: 'entity.property.generalWeather' }
+            #         - { property: 'generalWeatherIcon', label: 'entity.property.generalWeatherIcon' }
+            #         - { type: 'group', css_class: 'col-sm-6', label: 'app.detail' }
+            #         - { property: 'weatherAM', label: 'entity.property.weatherAM', css_class: col-md-6 }
+            #         - { property: 'weatherAMIcon', label: 'entity.property.weatherAMIcon', css_class: col-md-6 }
+            #         - { property: 'weatherPM', label: 'entity.property.weatherPM', css_class: col-md-6 }
+            #         - { property: 'weatherPMIcon', label: 'entity.property.weatherPMIcon', css_class: col-md-6 }
+            #         - { property: 'maximumTemperature', label: 'entity.property.maximumTemperature', css_class: col-md-6 }
+            #         - { property: 'minimumTemperature', label: 'entity.property.minimumTemperature', css_class: col-md-6 }
+            #         - { property: 'isotherm', label: 'entity.property.isotherm', css_class: col-md-6 }
+            #         - { property: 'uvRadiation', label: 'entity.property.uvRadiation', css_class: col-md-6 }
+            #         - { property: 'uvRadiationMapUrl', label: 'entity.property.uvRadiationMapUrl', css_class: col-md-6 }
+            #         - { property: 'satelitalImageUrl', label: 'entity.property.satelitalImageUrl', css_class: col-md-6 }
+            #         - { property: 'seaConditions', label: 'entity.property.seaConditions' }
+            #         - { type: 'group', css_class: 'col-sm-6', label: 'app.wind' }
+            #         - { property: 'windDirectionAM', label: 'entity.property.windDirectionAM', css_class: col-md-6 }
+            #         - { property: 'windDirectionPM', label: 'entity.property.windDirectionPM', css_class: col-md-6 }
+            #         - { property: 'maximumGustWind', label: 'entity.property.maximumGustWind' }
+            #         - { type: 'group', css_class: 'col-sm-6', label: 'app.rain' }
+            #         - { property: 'rainLast24hours', label: 'entity.property.rainLast24hours' }
+            #         - { property: 'rainAccumulated', label: 'entity.property.rainAccumulated' }
+            #         - { property: 'rainNormal', label: 'entity.property.rainNormal' }
+            #         - { property: 'rainSurplusDeficit', label: 'entity.property.rainSurplusDeficit' }
+            #         - { type: 'group', css_class: 'col-sm-6', label: 'app.snow' }
+            #         - { property: 'snowLast24hours', label: 'entity.property.snowLast24hours' }
+            #         - { property: 'snowAccumulated', label: 'entity.property.snowAccumulated' }
+            #         - { property: 'snowNormal', label: 'entity.property.snowNormal' }
+            #         - { property: 'snowSurplusDeficit', label: 'entity.property.snowSurplusDeficit' }
+
+

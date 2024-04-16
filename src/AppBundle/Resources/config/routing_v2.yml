@@ -1,0 +1,43 @@
+api_mine_v2:
+  type: rest
+  resource: AppBundle\Controller\Api\v2\MineController
+
+api_meteorological_forecast_v2:
+  type: rest
+  resource: AppBundle\Controller\Api\v2\MeteorologicalForecastController
+  parent: api_mine_v2
+  
+api_aeronautical_forecast_v2:
+  type: rest
+  resource: AppBundle\Controller\Api\v2\AeronauticalForecastController
+  parent: api_mine_v2
+
+api_maritime_forecast_v2:
+  type: rest
+  resource: AppBundle\Controller\Api\v2\MaritimeForecastController
+  parent: api_mine_v2
+
+api_road_v2:
+  type: rest
+  resource: AppBundle\Controller\Api\v2\RoadController
+  parent: api_mine_v2
+
+api_link_v2:
+  type: rest
+  resource: AppBundle\Controller\Api\v2\LinkController
+  parent: api_mine_v2
+
+api_weather_trend_v2:
+  type: rest
+  resource: AppBundle\Controller\Api\v2\WeatherTrendController
+  parent: api_mine_v2
+
+api_weather_2:
+  type: rest
+  resource: AppBundle\Controller\Api\v2\WeatherController
+  parent: api_mine_v2
+
+api_app_configuration_2:
+  type: rest
+  resource: AppBundle\Controller\Api\v2\AppConfigurationController
+  parent: api_mine_v2

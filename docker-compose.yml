@@ -1,0 +1,27 @@
+version: '3'
+services:
+  app:
+    container_name: ${COMPOSE_PROJECT_NAME}.app
+    build: docker/php
+    volumes:
+      - .:/app
+    working_dir: /app
+    cap_add:
+      - SYS_PTRACE
+
+  nginx:
+    container_name: ${COMPOSE_PROJECT_NAME}.nginx
+    build: docker/nginx
+    volumes:
+      - .:/app
+    ports:
+      - "${COMPOSE_PORT}:80"
+
+# version: '3'
+# services:
+#   app:
+#     container_name: ${COMPOSE_PROJECT_NAME}.app
+#     build: docker/php
+#     volumes:
+#       - .:/${COMPOSE_PROJECT_NAME}
+#     working_dir: /${COMPOSE_PROJECT_NAME}

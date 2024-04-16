@@ -1,0 +1,63 @@
+# # The configuration options are explained in detail in the bundle documentation,
+# # which is published at https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    entities:
+        AeronauticalForecast:
+            class: AppBundle\Entity\AeronauticalForecast
+            controller: AppBundle\Controller\Admin\AeronauticalForecastController
+            disabled_actions: [new, edit]
+            list:
+                title: menu.aeronautical_forecast
+                sort: [dateObject, 'DESC']
+                actions:
+                    # - { name: 'new', icon: 'plus-circle', label: 'button.new %%entity_label%%' }
+                    # - { name: 'edit', icon: 'edit', css_class: 'btn btn-warning', label: button.edit }
+                    - { name: 'show', icon: 'eye', css_class: 'btn btn-info', label: button.show }
+                    - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: button.delete }
+                fields:
+                    - { property: 'dateObject', label: 'entity.property.date' }
+                    - { property: 'code', label: 'entity.property.code' }
+                    - { property: 'emissionDate', label: 'entity.property.emissionDate' }
+                    - { property: 'validityDate', label: 'entity.property.validityDate' }
+                    - { property: 'createdAt', label: 'entity.property.created_at' }
+            search:
+                fields: [dateObject, code, emissionDate]
+                sort: [dateObject, 'DESC']
+            show:
+                fields:
+                    - { property: dateObject, label: 'entity.property.date' }
+                    - { property: code, label: 'entity.property.code' }
+                    - { property: emissionDate, label: entity.property.emissionDate }
+                    - { property: validityDate, label: entity.property.validityDate }
+                    - { property: synopticSituation, label: entity.property.synopticSituation }
+                    - { property: maximumTemperature, label: entity.property.maximumTemperature }
+                    - { property: minimumTemperature, label: entity.property.minimumTemperature }
+                    - { property: windSummary, label: entity.property.windSummary }
+                    - { property: operatingEstimate, label: entity.property.operatingEstimate }
+                    - { property: synopticSituationRoute, label: entity.property.synopticSituationRoute }
+                    - { property: santiagoPelambresRoute, label: entity.property.santiagoPelambresRoute }
+                    - { property: serenaPelambresRoute, label: entity.property.serenaPelambresRoute }
+                    - { property: observations, label: entity.property.observations }
+                    - { property: createdAt, label: 'entity.property.createdAt' }
+                    - { property: updatedAt, label: 'entity.property.updatedAt' }
+                    - { property: createdBy, label: 'entity.property.createdBy' }
+                    - { property: updatedBy, label: 'entity.property.updatedBy' }
+                    
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-6', label: 'app.basic', icon: 'pencil' }
+                    - { property: dateObject, label: 'entity.property.date' }
+                    - { property: code, label: 'entity.property.code' }
+                    - { property: emissionDate, label: entity.property.emissionDate }
+                    - { property: validityDate, label: entity.property.validityDate }
+                    - { property: synopticSituation, label: entity.property.synopticSituation }
+                    - { property: observations, label: entity.property.observations }
+                    - { property: maximumTemperature, label: entity.property.maximumTemperature }
+                    - { property: minimumTemperature, label: entity.property.minimumTemperature }
+                    - { property: windSummary, label: entity.property.windSummary }
+                    - { property: operatingEstimate, label: entity.property.operatingEstimate }
+                    - { property: synopticSituationRoute, label: entity.property.synopticSituationRoute }
+                    - { property: santiagoPelambresRoute, label: entity.property.santiagoPelambresRoute }
+                    - { property: serenaPelambresRoute, label: entity.property.serenaPelambresRoute }
+
+

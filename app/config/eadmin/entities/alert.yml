@@ -1,0 +1,43 @@
+# # The configuration options are explained in detail in the bundle documentation,
+# # which is published at https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    entities:
+        Alert:
+            class: AppBundle\Entity\Alert
+            list:
+                title: menu.alert
+                sort: [id, 'DESC']
+                actions:
+                    - { name: 'new', icon: 'plus-circle', label: 'button.new %%entity_label%%' }
+                    - { name: 'edit', icon: 'edit', css_class: 'btn btn-warning', label: button.edit }
+                    - { name: 'show', icon: 'eye', css_class: 'btn btn-info', label: button.show }
+                    - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: button.delete }
+                fields:
+                    - { property: 'title', label: 'entity.property.title' }
+                    - { property: 'severity', label: 'entity.property.severity' }
+                    - { property: 'published', label: 'entity.property.published' }
+                    - { property: 'createdAt', label: 'entity.property.created_at' }
+            search:
+                fields: [title]
+                sort: [id, 'DESC']
+            show:
+                fields:
+                    - { property: title, label: 'entity.property.title' }
+                    - { property: severity, label: 'entity.property.severity' }
+                    - { property: icon, label: 'entity.property.icon', template: 'easy_admin/icon.html.twig' }
+                    - { property: body, label: 'entity.property.body', template: 'easy_admin/ck_editor.html.twig' }
+                    - { property: published, label: 'entity.property.published' }
+                    - { property: 'createdAt', label: 'entity.property.created_at' }
+                    
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-12', label: 'app.alert', icon: 'pencil' }
+                    - { property: title, label: 'entity.property.title' }
+                    - { property: severity, label: 'entity.property.severity', type: 'AppBundle\Form\Admin\SeverityType' }
+                    - { property: icon, label: 'entity.property.icon', type: 'AppBundle\Form\Admin\SynopticIconType' }
+                    - { property: body, label: 'entity.property.body', type: 'FOS\CKEditorBundle\Form\Type\CKEditorType', type_options: { config_name: 'base_config' } }
+                    - { property: published, label: 'entity.property.published' }
+                actions:
+                    - { name: 'show', icon: 'eye', css_class: 'btn btn-info', label: button.show }
+
+

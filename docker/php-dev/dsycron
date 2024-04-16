@@ -1,0 +1,8 @@
+# 00 06 * * * root /usr/local/bin/php /app/bin/console dsarhoya:melon:history-dispatch-guide --env=prod >> /var/log/cron.log 2>&1
+# * * * * * root /usr/local/bin/php /app/bin/console swiftmailer:spool:send --env=stage >> /var/log/cron.log 2>&1
+# */10 * * * * root /usr/local/bin/php /app/bin/console app:dispatch-guide:sync-pdf --env=prod >> /var/log/cron.log 2>&1
+# */4 * * * * root /usr/local/bin/php /app/bin/console app:dispatch-guide:alert-notifications --env=prod >> /var/log/cron.log 2>&1
+# 00 06 * * * root /usr/local/bin/php /app/bin/console app:clean-pdfs --env=prod >> /var/log/cron.log 2>&1
+# */1 * * * * root /usr/local/bin/php /app/bin/console app:fatigue:operator-block --env=prod >> /var/log/cron.log 2>&1
+# */1 * * * * /usr/local/bin/php /app/bin/console test --env=dev >> /app/docker/logs/cron/cron.log 2>&1
+#no borrar esta línea

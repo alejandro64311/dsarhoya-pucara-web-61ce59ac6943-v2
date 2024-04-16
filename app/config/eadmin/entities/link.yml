@@ -1,0 +1,40 @@
+# # The configuration options are explained in detail in the bundle documentation,
+# # which is published at https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    entities:
+        Link:
+            class: AppBundle\Entity\Link
+            list:
+                title: menu.link
+                sort: [type, 'ASC', name, 'ASC']
+                actions:
+                    - { name: 'new', icon: 'plus-circle', label: 'button.new %%entity_label%%' }
+                    - { name: 'edit', icon: 'edit', css_class: 'btn btn-warning', label: button.edit }
+                    - { name: 'show', icon: 'eye', css_class: 'btn btn-info', label: button.show }
+                    - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: button.delete }
+                fields:
+                    - { property: 'typeName', label: 'entity.property.type' }
+                    - { property: 'name', label: 'entity.property.name' }
+                    - { property: 'url', label: 'entity.property.url', type: url }
+                    - { property: 'createdAt', label: 'entity.property.created_at' }
+            search:
+                fields: [name, url]
+                sort: [name, 'DESC']
+            show:
+                fields:
+                    - { property: typeName, label: 'entity.property.type' }
+                    - { property: name, label: 'entity.property.name' }
+                    - { property: url, label: 'entity.property.url', type: url }
+                    - { property: createdAt, label: 'entity.property.createdAt' }
+                    - { property: updatedAt, label: 'entity.property.updatedAt' }
+                    - { property: createdBy, label: 'entity.property.createdBy' }
+                    - { property: updatedBy, label: 'entity.property.updatedBy' }
+                    
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-6', label: 'app.basic', icon: 'pencil' }
+                    - { property: type, label: 'entity.property.type', type: 'AppBundle\Form\Admin\LinkTypeType' }
+                    - { property: name, label: 'entity.property.name' }
+                    - { property: url, label: 'entity.property.url', type: url }
+
+

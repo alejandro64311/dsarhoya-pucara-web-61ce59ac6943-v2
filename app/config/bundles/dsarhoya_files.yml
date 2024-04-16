@@ -1,0 +1,9 @@
+# # Dsarhoya DSYFilesBundle configurations
+dsarhoya_dsy_files:
+  storage_type: s3
+  s3:
+    credentials:
+      key:      '%s3_key%'
+      secret:   '%s3_secret%'
+      bucket:   '%s3_bucket%'
+      region:   '%s3_region%'

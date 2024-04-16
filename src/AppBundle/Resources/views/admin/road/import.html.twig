@@ -1,0 +1,44 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{% block body_class %}
+    {{ mine_slug(app.request) }}
+{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="panel-title">Importación de Estados de Caminos</h3>
+                        <hr class="m-t-0 m-b-40">
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                        {{ form_widget(form) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary" value="Subir">
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <a role="button" class="btn btn-info"
+                                    href="{{ path('admin_road_import_template') }}"
+                                    title="Descarga de plantilla de importación">
+                                    <i class="mdi mdi-download mr-2"></i>
+                                    <span>Descargar plantilla</span>
+                                </a>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <a role="button" class="btn btn-default" href="{{ path('easyadmin', { entity: 'Road', action: 'list' }) }}">
+                    <span>Volver al  listado</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

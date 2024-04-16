@@ -1,0 +1,36 @@
+
+easy_admin:
+    entities:
+        HourMeteorologicalForecast:
+            class: AppBundle\Entity\HourMeteorologicalForecast
+            controller: AppBundle\Controller\Admin\HourMeteorologicalForecastController
+            disabled_actions: [new, edit]
+            list:
+                title: menu.hour_meteorological_forecast
+                sort: [date, 'DESC']
+                actions:
+                    - { name: 'show', icon: 'eye', css_class: 'btn btn-info', label: button.show }
+                    - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: button.delete }
+                fields:
+                    - { property: 'date', label: 'entity.property.date' }
+                    - { property: 'place', label: 'entity.property.place' }
+                    - { property: 'cloudCoverIcon', label: 'entity.property.cloudCover' }
+                    - { property: 'createdAt', label: 'entity.property.created_at' }
+            search:
+                fields: [date]
+                sort: ['date', 'DESC']
+            show:
+                fields:
+                    - { property: 'date', label: 'entity.property.date' }
+                    - { property: 'place', label: 'entity.property.place' }
+                    - { property: 'cloudCoverIcon', label: 'entity.property.cloudCover' }
+                    - { property: 'windDirection', label: 'entity.property.windDirection' }
+                    - { property: 'windIntensity', label: 'entity.property.windIntensity' }
+                    - { property: 'windGusts', label: 'entity.property.windGusts' }
+                    - { property: 'temperature', label: 'entity.property.temperature' }
+                    - { property: 'thermalSensation', label: 'entity.property.thermalSensation' }
+                    - { property: 'relativeHumidity', label: 'entity.property.relativeHumidity' }
+                    - { property: 'precipitationProbability', label: 'entity.property.precipitationProbability' }
+                    - { property: 'estimatedAccumulation', label: 'entity.property.estimatedAccumulation' }
+                    - { property: 'electricalActivityProbability', label: 'entity.property.electricalActivityProbability' }
+                    - { property: 'createdAt', label: 'entity.property.created_at' }

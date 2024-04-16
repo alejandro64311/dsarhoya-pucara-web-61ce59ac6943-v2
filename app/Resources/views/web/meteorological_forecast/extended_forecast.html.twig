@@ -1,0 +1,27 @@
+<div class="day d-flex justify-content-between extended-forecast">
+    <div class="forecast">
+        <h4>{{forecast.dateObject|date('l')|trans}} {{forecast.dateObject|date('d')}}</h4>
+        <div class="forecast-icon">
+            <img src="{{ forecast.generalWeatherIcon|icon_url }}" alt="icon">
+        </div>
+    </div>
+    <div class="synoptic-situation">
+        <h6>{{forecast.synopticSituation}}</h6>
+        <div class="min-max-temp d-flex">
+            <div class="min">
+                <h5>{{forecast.minimumTemperature}}º /</h5>
+                <small>MIN (ºC)</small>
+            </div>
+            <div class="max">
+                <h5>{{forecast.maximumTemperature}}º</h5>
+                <small>MAX (ºC)</small>
+            </div>
+        </div>
+    </div>
+    <div class="other">
+        <p class="wind">{{forecast.windDirectionAM}} / {{forecast.windDirectionPM}}</p>
+        <p>{{forecast.maximumGustWind}} {{forecast.getWindUnitName()}} </p>
+        <p>UV {{forecast.uvRadiation}} </p>
+        <p>Visibilidad {{ forecast.visibility }}</p>
+    </div>
+</div>

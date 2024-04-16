@@ -1,0 +1,107 @@
+<div class="tab-pane fade {{ first ? 'show active' : ''}}" id="{{ tabId }}" role="tabpanel" aria-labelledby="{{ tabId }}-tab">
+    <div class="card tab-pane">
+        <div class="bg-image d-block forecast-top" style="background:url({{ asset('assets/img/' ~ mine_slug() ~ '/' ~ slug ~ '.jpg') }});
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            position: relative; ">
+            <div class="col-overlay text-white" style="display: inline-block;
+    padding: 18px;
+    margin: 10px;">
+                <h2 class="card-title">{{places[slug].name is defined ? places[slug].name : slug}}</h2>
+                {% if first and show_current_weather(slug) %}
+                    <div class="current-temp d-flex">
+                        {% if forecast is not null %}
+                        <div class="forecast-icon">
+                                <img src="{{ forecast.generalWeatherIcon|icon_url }}" alt="icon">
+                        </div>
+                        {% endif %}
+                        <div class='current-temp-number text-center'>
+                            <h3>{{ currentWeatherInfo['temperature'] is defined ? currentWeatherInfo['temperature']|round(1) : '' }}<sup>ºC</sup></h3>
+                            <p><small>Tº Actual</small></p>
+                        </div>
+                    </div>
+                    <p class="card-text"><small>Hum. Rel.</small> {{ currentWeatherInfo['humidity'] is defined ? currentWeatherInfo['humidity'] : '' }}%</p>
+                    {% if currentWeatherInfo['wind']['speed'] is defined %}
+                        <p class="card-text"><small>Viento</small> {{currentWeatherInfo['wind']['speed']}} {{ windUnit(mine.slug) }}</p>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="card-body">
+            {% if forecast is not null %}
+                <p class="forecast-detail-synoptic-situation">{{ forecast.synopticSituation }}</p>
+                <div class="row mt-4">
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex border-bottom dotted mb-3 pb-3">
+                            <div class="data-icon">
+                                <i class="flaticon-thermometer"></i>
+                            </div>
+                            <div class="data-text">
+                                <p><strong>MIN: </strong>{{forecast.minimumTemperature}}ºC</p>
+                                <p><strong>MAX: </strong>{{forecast.maximumTemperature}}ºC</p>
+                            </div>
+                        </div>
+                        <div class="d-flex border-bottom dotted mb-3 pb-3">
+                            <div class="data-icon">
+                                <i class="flaticon-snow-flake"></i>
+                            </div>
+                            <div class="data-text single-value">
+                                <p><strong>Isoterma 0ºC: </strong> {{forecast.isotherm }} m.s.n.m.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex border-bottom dotted mb-3 pb-3">
+                            <div class="data-icon">
+                                <i class="flaticon-wind"></i>
+                            </div>
+                            <div class="data-text">
+                                <p><strong>Direc. ° A.M.: </strong>{{forecast.windDirectionAM}}</p>
+                                <p><strong>Direc. ° P.M.: </strong>{{forecast.windDirectionPM}}</p>
+                                <p><strong>Racha max {{forecast.getWindUnitName()}}: </strong>{{forecast.maximumGustWind}}</p>
+                            </div>
+                        </div>
+                        <div class="d-flex border-bottom dotted mb-3 pb-3">
+                            <div class="data-icon">
+                                <i class="flaticon-uv-protection"></i>
+                            </div>
+                            <div class="data-text single-value">
+                                <p>
+                                    <strong>Radiación UV: </strong>
+                                    {# {{forecast.uvRadiation}} #}
+                                    {% if forecast.uvRadiation|uv_icon %}
+                                        <img class="forecast-uv-icon ml-2" src="{{ asset('assets/img/uv/' ~ forecast.uvRadiation|uv_icon ) }}" alt="">
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+
+                        <div class="d-flex border-bottom dotted mb-3 pb-3">
+                            <div class="data-icon">
+                                <i class="flaticon-water"></i>
+                            </div>
+                            <div class="data-text">
+                                <p><strong>Ultimas 24 hrs.: </strong>{{forecast.rainLast24hours}} mm</p>
+                                <p><strong>Acumulado periodo: </strong>{{forecast.rainAccumulated}} mm</p>
+                                <p><strong>Normal año: </strong>{{forecast.rainNormal}} mm</p>
+                                <p><strong>Superávit/Déficit: </strong>{{forecast.rainSurplusDeficit}} %</p>
+                            </div>
+                        </div>
+                        <div class="d-flex ">
+                            <div class="data-icon">
+                                <i class="flaticon-snowflake"></i>
+                            </div>
+                            <div class="data-text">
+                                <p><strong>Ultimas 24 hrs.: </strong>{{forecast.snowLast24hours}} cm</p>
+                                <p><strong>Acumulado periodo: </strong>{{forecast.snowAccumulated}} cm</p>
+                                <p><strong>Normal año: </strong>{{forecast.snowNormal}} cm</p>
+                                <p><strong>Superávit/Déficit: </strong>{{forecast.snowSurplusDeficit}} %</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

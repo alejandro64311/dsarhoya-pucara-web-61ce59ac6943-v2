@@ -1,0 +1,10 @@
+{% extends '@EasyAdmin/default/list.html.twig' %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-md-12 text-right margin-bottom">
+            <a role="button" class="btn btn-info" href="{{ path('admin_road_import') }}" title="Importación de estados de caminos">Importar estados</a>
+        </div>
+    </div>
+    {{ parent() }}
+{% endblock main %}

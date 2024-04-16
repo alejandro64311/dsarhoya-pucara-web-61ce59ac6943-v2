@@ -1,0 +1,4 @@
+# 00 06 * * * root /usr/local/bin/php /mimixer/bin/console dsarhoya:melon:history-dispatch-guide --env=prod >> /var/log/cron.log 2>&1
+# * * * * * root /usr/local/bin/php /app/bin/console swiftmailer:spool:send --env=stage >> /var/log/cron.log 2>&1
+# */10 * * * * root /usr/local/bin/php /mimixer/bin/console app:dispatch-guide:sync-pdf --env=prod >> /var/log/cron.log 2>&1
+#no borrar esta línea
