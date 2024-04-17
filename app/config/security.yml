@@ -19,8 +19,8 @@ security:
           memory:
             users:
                 dsy: { password: "%superAdminPassDsy%", roles: [ 'ROLE_SUPER_ADMIN' ] }
-                doc: { password: 041150fd24e5d7f2e5a0899d64221fa30e808854, roles: [ 'ROLE_DOCS' ] }
-                pucara: { password: 06788c4b389e55ccd876d53d3e8da99393b3e5e2, roles: [ 'ROLE_WEB' ] }
+                doc: { password: 7110eda4d09e062aa5e4a390b0a572ac0d2c0220, roles: [ 'ROLE_DOCS' ] }
+                pucara: { password: 7110eda4d09e062aa5e4a390b0a572ac0d2c0220, roles: [ 'ROLE_WEB' ] }
         user_db:
           entity: { class: AppBundle\Entity\User }
         api_key_user_provider:
