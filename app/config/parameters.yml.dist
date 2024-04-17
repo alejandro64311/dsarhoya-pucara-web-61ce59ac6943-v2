@@ -27,10 +27,10 @@ parameters:
     from_email: alejandro64311@hotmail.com
 
     # AWS S3
-    s3_key: ~
-    s3_secret: ~
-    s3_bucket: ~
-    s3_region: ~
+    s3_key: AKIAUSWMTH7RJRLFAFEA
+    s3_secret: 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
+    s3_bucket: isteev-bucket
+    s3_region: us-east-1
 
     # Weather API
     weather_api_key: ~
